@@ -12,12 +12,18 @@ const client = new TwitterApi({
 });
 
 // Read the image file
-const imageData = fs.readFileSync(process.env.IMAGE_PATH).toString("base64");
+// const imageData = fs.readFileSync(process.env.IMAGE_PATH).toString("base64");
 
-console.log(imageData.slice(0, 20) + "...");
+// console.log(imageData.slice(0, 20) + "...");
 
-client.v1
-  .uploadMedia(Buffer.from(process.env.IMAGE_PATH), { mimeType: "image/png" })
-  .then((response) => {
-    console.log(response);
-  });
+// client.v1
+//   .uploadMedia(Buffer.from(process.env.IMAGE_PATH), { mimeType: "image/png" })
+//   .then((response) => {
+//     console.log(response);
+//   });
+
+const result = await client.v2.get("tweets/search/recent", {
+  query: "nodeJS",
+  max_results: 100,
+});
+console.log(result.data); // TweetV2[]
