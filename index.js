@@ -22,8 +22,11 @@ const client = new TwitterApi({
 //     console.log(response);
 //   });
 
-const result = await client.v2.get("tweets/search/recent", {
-  query: "nodeJS",
-  max_results: 100,
-});
-console.log(result.data); // TweetV2[]
+client.v2
+  .get("tweets/search/recent", {
+    query: "nodeJS",
+    max_results: 100,
+  })
+  .then((result) => {
+    console.log(result.data); // TweetV2[]
+  });
