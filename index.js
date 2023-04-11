@@ -12,8 +12,12 @@ const client = new TwitterApi({
 });
 
 // Read the image file
-const imageData = fs.readFileSync(process.env.IMAGE_PATH);
+const imageData = fs.readFileSync(process.env.IMAGE_PATH).toString("base64");
 
-client.v1.media.upload({ media_data, imageData }).then((media) => {
-  console.log(media.media_id_string);
-});
+console.log(imageData.slice(0, 20) + "...");
+
+client.v1
+  .uploadMedia(Buffer.from(process.env.IMAGE_PATH), { type: "png" })
+  .then((response) => {
+    console.log(response);
+  });
