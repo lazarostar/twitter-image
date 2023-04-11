@@ -17,7 +17,7 @@ const imageData = fs.readFileSync(process.env.IMAGE_PATH).toString("base64");
 console.log(imageData.slice(0, 20) + "...");
 
 client.v1
-  .uploadMedia(Buffer.from(process.env.IMAGE_PATH), { type: "png" })
+  .uploadMedia(Buffer.from(process.env.IMAGE_PATH), { mimeType: "image/png" })
   .then((response) => {
     console.log(response);
   });
