@@ -22,7 +22,7 @@ const client = new TwitterApi({
 //     console.log(response);
 //   });
 
-client.v2
+client.v1
   .get("tweets/search/recent", {
     query: "nodeJS",
     max_results: 100,
